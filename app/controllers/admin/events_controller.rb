@@ -1,6 +1,6 @@
 #
 class Admin::EventsController < AdminController
-  before_action :set_event
+  before_action :set_event, only: %i[show update edit destroy]
 
   def index
     @events = Event.all
@@ -8,6 +8,7 @@ class Admin::EventsController < AdminController
 
   def show
     # @event = Event.find(params[:id])
+    # @event = Event.find_by_friendly_id!(params[:id])
   end
 
   def new
@@ -15,7 +16,8 @@ class Admin::EventsController < AdminController
   end
 
   def create
-    # @event = Event.new(event_params)
+    @event = Event.new(event_params)
+    # @event = Event.find_by_friendly_id!(params[:id])
 
     if @event.save
       redirect_to admin_events_path
@@ -29,7 +31,8 @@ class Admin::EventsController < AdminController
   end
 
   def update
-    @event = Event.find(params[:id])
+    # @event = Event.find(params[:id])
+    # @event = Event.find_by_friendly_id!(params[:id])
 
     if @event.update(event_params)
       redirect_to admin_events_path
@@ -40,6 +43,7 @@ class Admin::EventsController < AdminController
 
   def destroy
     # @event = Event.find(params[:id])
+    # @event = Event.find_by_friendly_id!(params[:id])
     @event.destroy
 
     redirect_to admin_events_path
@@ -48,7 +52,7 @@ class Admin::EventsController < AdminController
   protected
 
   def event_params
-    params.require(:event).permit(:name, :description)
+    params.require(:event).permit(:name, :description, :friendly_id)
   end
 
   def set_event
