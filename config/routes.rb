@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/faq' => 'pages#faq'
   resources :events
+  resource :user
 
   namespace :admin do
     root 'events#index'
