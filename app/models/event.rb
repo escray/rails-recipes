@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   validates_inclusion_of :status, in: STATUS
 
   belongs_to :category, optional: true
+  has_many :tickets, dependent: :destroy
 
   before_validation :generate_friendly_id, on: :create
 
