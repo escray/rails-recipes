@@ -1,5 +1,5 @@
 <h1>Edit Ticket</h1>
-<%= form_for [:admin, @event, @ticket] do |f| %>
+<%= simple_form_for [:admin, @event, @ticket] do |f| %>
   <%= render partial: "form", locals: { f: f } %>
   <div class="form-group">
     <%= f.submit "Update", class: "btn btn-primary" %>
