@@ -14,6 +14,9 @@ class Event < ApplicationRecord
 
   before_validation :generate_friendly_id, on: :create
 
+  include RankedModel
+  ranks :row_order
+
   def to_param
     # "#{id}-#{name}"
     friendly_id

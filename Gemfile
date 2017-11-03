@@ -32,7 +32,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'ckeditor'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'nested_form_fields'
+gem 'ranked-model'
 gem 'select2-rails'
 gem 'simple_form'
 
