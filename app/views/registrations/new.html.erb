@@ -1,0 +1,10 @@
+<h1><%= @event.name %></h1>
+<%= simple_form_for [@event, Registration.new] do |f| %>
+  <%= f.input :ticket_id, as: :select, collection: @event.tickets %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :cellphone %>
+  <%= f.input :website %>
+  <%= f.input :bio, as: :text %>
+  <%= f.button :submit, "报名", class: "btn btn-primary" %>
+<% end %>
