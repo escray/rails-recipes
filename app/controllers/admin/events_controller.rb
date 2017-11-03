@@ -55,8 +55,13 @@ class Admin::EventsController < AdminController
     total = 0
     Array(params[:ids]).each do |event_id|
       event = Event.find(event_id)
-      event.destroy
-      total += 1
+      if params[:commit] == I18n.t(:bulk_update)
+        event.status = params[:event_status]
+        total += 1 if event.save
+      elsif params[:commit] == I18n.t(:bulk_delete)
+        event.destroy
+        total += 1
+      end
     end
 
     flash[:alert] = "成功完成#{total}笔"
