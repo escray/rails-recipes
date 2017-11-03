@@ -1,5 +1,16 @@
 <h2>Edit User</h2>
-<%= form_for @user do |f| %>
+<%= simple_form_for @user do |f| %>
+  <%= f.input :time_zone, priority: /Beijing/ %>
+  <%= f.simple_fields_for :profile do |ff| %>
+    <%= ff.input :legal_name %>
+    <%= ff.input :birthday, as: :string, input_html: { data: { behaviour: "datepicker" }} %>
+    <%= ff.input :education %>
+    <%= ff.input :occupation %>
+    <%= ff.input :bio %>
+  <% end %>
+  <%= f.submit 'Save', class: "btn btn-primary" %>
+<% end %>
+<!-- <%= form_for @user do |f| %>
   <div class="form-group">
     <%= f.label :time_zone %>
     <%= f.time_zone_select :time_zone %>
@@ -25,12 +36,11 @@
       <%= ff.label :bio %>
       <%= ff.text_area :bio, class: "form-control" %>
     </div>
-    <div class="form-group">
-      <%= ff.label :specialty %>
-      <%= ff.text_area :specialty, class: "form-control" %>
-    </div>
   <% end %>
   <div class="form-group">
     <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
-<% end %>
+<% end %>-->
+<script>
+  $("#user_profile_attributes_birthday").datepicker({ format: "yyyy-mm-dd" })
+</script>
