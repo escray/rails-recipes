@@ -3,16 +3,21 @@
 <% if @registration.errors.any? %>
   <ul>
     <% @registration.errors.full_messages.each do |error| %>
-      <li>
+      <!-- <li>
         <%= error %>
-      </li>
+      </li> -->
     <% end %>
   </ul>
 <% end %>
-<%= simple_form_for @registration, url: update_step2_event_registration_path(@event, @registration) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :email, as: :email %>
-  <%= f.input :cellphone, as: :tel %>
+<%= simple_form_for @registration, url: update_step2_event_registration_path(@event, @registration), validate: true do |f| %>
+  <%= f.input :name, required: true, autofocus: true %>
+  <%= f.input :email, as: :email, required: true %>
+  <div class="help-block with-errors"></div>
+  <%= f.input :cellphone, as: :tel, required: true %>
+  <div class="help-block with-errors"></div>
   <%= link_to "Previous", step1_event_registration_path(@event, @registration), class: "btn btn-primary" %>
   <%= f.button :submit, "Save & Next", class: "btn btn-primary" %>
 <% end %>
+<script>
+  // $("form").validator();
+</script>

@@ -5,7 +5,9 @@ class RegistrationsController < ApplicationController
                                              step2 step2_update
                                              step3 step3_update]
 
-  def new; end
+  def new
+    @registrations = Registration.new
+  end
 
   def create
     @registration = @event.registrations.new(registration_params)
