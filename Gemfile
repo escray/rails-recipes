@@ -33,6 +33,7 @@ gem 'ckeditor'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'kaminari'
 gem 'nested_form_fields'
 gem 'ranked-model'
 gem 'select2-rails'
