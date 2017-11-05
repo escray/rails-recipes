@@ -16,6 +16,9 @@ class Event < ApplicationRecord
 
   before_validation :generate_friendly_id, on: :create
 
+  scope :only_public, -> { where(status: 'public') }
+  scope :only_available, -> { where(status: %w[public private]) }
+
   include RankedModel
   ranks :row_order
 
