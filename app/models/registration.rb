@@ -20,6 +20,8 @@ class Registration < ApplicationRecord
   scope :by_status, ->(s) { where(status: s) }
   scope :by_ticket, ->(t) { where(ticket_id: t) }
 
+  has_paper_trail
+
   def to_param
     uuid
   end

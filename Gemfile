@@ -33,6 +33,12 @@ gem 'ckeditor'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
+# export excel file
+gem 'axlsx'
+gem 'axlsx_rails'
+gem 'rubyzip'
+
 gem 'kaminari'
 gem 'nested_form_fields'
 gem 'paper_trail'
