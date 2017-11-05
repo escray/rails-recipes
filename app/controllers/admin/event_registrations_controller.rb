@@ -6,18 +6,40 @@ class Admin::EventRegistrationsController < ApplicationController
     @registrations = @event.registrations.includes(:ticket)
                            .order('id DESC').page(params[:page]).per(7)
 
-    @registrations = @registrations.by_status(params[:status]) if
-     Registration::STATUS.include?(params[:status]) && params[:status]
-     .present?
+    if Registration::STATUS.include?(params[:status]) && params[:status]
+       .present?
+      @registrations = @registrations.by_status(params[:status])
+    end
 
-    @registrations = @registrations.by_ticket(params[:ticket_id]) if
-      params[:ticket_id].present?
+    if params[:ticket_id].present?
+      @registrations = @registrations.by_ticket(params[:ticket_id])
+    end
 
-    @registrations = @registrations.by_status(params[:statuses]) if
-      Array(params[:statuses]).any?
+    if Array(params[:statuses]).any?
+      @registrations = @registrations.by_status(params[:statuses])
+    end
 
-    @registrations = @registrations.by_ticket(params[:ticket_ids]) if
-      Array(params[:ticket_ids]).any?
+    if Array(params[:ticket_ids]).any?
+      @registrations = @registrations.by_ticket(params[:ticket_ids])
+    end
+
+    if params[:start_on].present?
+      @registrations = @registrations
+                       .where('created_at >= ?',
+                              Date.parse(params[:start_on])
+                                  .beginning_of_day)
+    end
+
+    if params[:end_on].present?
+      @registrations = @registrations
+                       .where('created_at <= ?',
+                              Date.parse(params[:end_on]).end_of_day)
+    end
+
+    if params[:registration_id].present?
+      @registrations = @registrations
+                       .where(id: params[:registration_id].split(','))
+    end
   end
 
   def destroy
