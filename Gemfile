@@ -36,6 +36,7 @@ gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'nested_form_fields'
 gem 'ranked-model'
+gem 'ransack'
 gem 'select2-rails'
 gem 'simple_form'
 
