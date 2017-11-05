@@ -39,10 +39,16 @@ gem 'axlsx'
 gem 'axlsx_rails'
 gem 'rubyzip'
 
+# upload picture
+gem 'carrierwave'
+gem 'mini_magick'
+
+# paginate
 gem 'kaminari'
 gem 'nested_form_fields'
 gem 'paper_trail'
 gem 'ranked-model'
+# filter
 gem 'ransack'
 gem 'select2-rails'
 gem 'simple_form'

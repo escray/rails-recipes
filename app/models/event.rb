@@ -21,6 +21,7 @@ class Event < ApplicationRecord
 
   include RankedModel
   ranks :row_order
+  mount_uploader :logo, EventLogoUploader
 
   def to_param
     # "#{id}-#{name}"

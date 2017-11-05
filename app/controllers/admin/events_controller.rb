@@ -83,6 +83,8 @@ class Admin::EventsController < AdminController
   def event_params
     params.require(:event)
           .permit(:name,
+                  :logo,
+                  :remove_logo,
                   :description,
                   :friendly_id,
                   :status,
