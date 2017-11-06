@@ -25,6 +25,18 @@ class Admin::EventsController < AdminController
         borderWidth: 1
       }]
     }
+    @data2 = {
+      labels: ticket_names,
+      datasets: [{
+        label: '# of Amount',
+        data: @event.tickets.map do |t|
+          t.registrations.by_status('confirmed').count * t.price
+        end,
+        backgroundColor: colors,
+        borderWidth: 1
+
+      }]
+    }
   end
 
   def new
