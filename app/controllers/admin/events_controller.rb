@@ -1,5 +1,6 @@
 #
 class Admin::EventsController < AdminController
+  before_action :require_editor!
   before_action :set_event, only: %i[show update edit destroy reorder]
 
   def index

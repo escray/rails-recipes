@@ -1,5 +1,7 @@
 #
 class Admin::UsersController < AdminController
+  before_action :require_admin!
+
   def index
     @user = User.includes(:groups).all
   end
