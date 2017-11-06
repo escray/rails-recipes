@@ -2,4 +2,23 @@
 <p>
   <%= link_to "打開前台", event_path(@event), :target => "_blank", :class => "btn btn-primary" %>
 </p>
+<canvas id="myChart" width="200" height="100"></canvas>
+<script>
+  var ctx = document.getElementById("myChart");
+
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: <%= raw @data1.to_json %>,
+
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+  });
+</script>
 <%= sanitize @event.description %>

@@ -52,6 +52,8 @@ gem 'ranked-model'
 gem 'ransack'
 gem 'select2-rails'
 gem 'simple_form'
+# chart
+gem 'chart-js-rails'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'

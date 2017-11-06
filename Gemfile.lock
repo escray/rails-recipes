@@ -64,6 +64,8 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chart-js-rails (0.1.4)
+      railties (> 3.1)
     ckeditor (4.2.4)
       cocaine
       orm_adapter (~> 0.5.0)
@@ -296,6 +298,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   carrierwave
+  chart-js-rails
   ckeditor
   coffee-rails (~> 4.2)
   devise
