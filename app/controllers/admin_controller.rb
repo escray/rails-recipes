@@ -9,15 +9,15 @@ class AdminController < ApplicationController
   protected
 
   def require_admin!
-    if current_user.role != 'admin'
-      flash[:alert] = '您的权限不足'
+    unless current_user.admin?
+      flash[:alert] = '您的权限不足 admin'
       redirect_to root_path
     end
   end
 
   def require_editor!
-    if current_user.role != 'editor' && current_user.role != 'admin'
-      flash[:alert] = '您的权限不足'
+    unless current_user.editor?
+      flash[:alert] = '您的权限不足 editor'
       redirect_to root_path
     end
   end
