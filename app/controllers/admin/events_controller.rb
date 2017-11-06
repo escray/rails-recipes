@@ -16,14 +16,19 @@ class Admin::EventsController < AdminController
               'rgba(153, 102, 255, 0.2)',
               'rgba(255, 159, 64, 0.2)']
     ticket_names = @event.tickets.map(&:name)
+
+    status_colors = { 'confirmed' => '#FF6384', 'pending' => '#36A2EB' }
+
     @data1 = {
       labels: ticket_names,
-      datasets: [{
-        label: '# of Registrations',
-        data: @event.tickets.map { |t| t.registrations.count },
-        backgroundColor: colors,
-        borderWidth: 1
-      }]
+      datasets: Registration::STATUS.map do |s|
+        {
+          label: I18n.t(s, scope: 'registration.status'),
+          data: @event.tickets.map { |t| t.registrations.by_status(s).count },
+          backgroundColor: status_colors[s],
+          borderWidth: 1
+        }
+      end
     }
     @data2 = {
       labels: ticket_names,
@@ -37,6 +42,27 @@ class Admin::EventsController < AdminController
 
       }]
     }
+
+    if @event.registrations.any?
+      dates = (@event.registrations.order('id DESC')
+                     .first.created_at.to_date..Date.today).to_a
+
+      @data3 = {
+        labels: dates,
+        datasets: Registration::STATUS.map do |s|
+          {
+            label: I18n.t(s, scope: 'registration.status'),
+            data: dates.map do |d|
+                    @event.registrations.by_status(s)
+                          .where('created_at >= ? AND created_at <= ?',
+                                 d.beginning_of_day, d.end_of_day).count
+                  end,
+            borderColor: status_colors[s],
+            borderWidth: 1
+          }
+        end
+      }
+    end
   end
 
   def new
