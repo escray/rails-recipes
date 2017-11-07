@@ -54,6 +54,8 @@ gem 'select2-rails'
 gem 'simple_form'
 # chart
 gem 'chart-js-rails'
+# e-mail CSS
+gem 'premailer-rails'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
