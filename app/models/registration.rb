@@ -1,6 +1,6 @@
 #
 class Registration < ApplicationRecord
-  STATUS = %w[pending confirmed].freeze
+  STATUS = %w[pending confirmed cancelled].freeze
   validates_inclusion_of :status, in: STATUS
   validates_presence_of :status, :ticket_id
 
